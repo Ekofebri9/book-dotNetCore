@@ -1,0 +1,69 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/ecko/Desktop/dot_core/basicwebapi/basicwebapi.csproj": {}
+  },
+  "projects": {
+    "/home/ecko/Desktop/dot_core/basicwebapi/basicwebapi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ecko/Desktop/dot_core/basicwebapi/basicwebapi.csproj",
+        "projectName": "basicwebapi",
+        "projectPath": "/home/ecko/Desktop/dot_core/basicwebapi/basicwebapi.csproj",
+        "packagesPath": "/home/ecko/.nuget/packages/",
+        "outputPath": "/home/ecko/Desktop/dot_core/basicwebapi/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/ecko/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+/home/ecko/Desktop/dot_core/basicwebapi/bin/Debug/netcoreapp2.2/basicwebapi.deps.json
+/home/ecko/Desktop/dot_core/basicwebapi/bin/Debug/netcoreapp2.2/basicwebapi.runtimeconfig.json
+/home/ecko/Desktop/dot_core/basicwebapi/bin/Debug/netcoreapp2.2/basicwebapi.runtimeconfig.dev.json
+/home/ecko/Desktop/dot_core/basicwebapi/bin/Debug/netcoreapp2.2/basicwebapi.dll
+/home/ecko/Desktop/dot_core/basicwebapi/bin/Debug/netcoreapp2.2/basicwebapi.pdb
+/home/ecko/Desktop/dot_core/basicwebapi/obj/Debug/netcoreapp2.2/basicwebapi.csprojAssemblyReference.cache
+/home/ecko/Desktop/dot_core/basicwebapi/obj/Debug/netcoreapp2.2/basicwebapi.csproj.CoreCompileInputs.cache
+/home/ecko/Desktop/dot_core/basicwebapi/obj/Debug/netcoreapp2.2/basicwebapi.RazorAssemblyInfo.cache
+/home/ecko/Desktop/dot_core/basicwebapi/obj/Debug/netcoreapp2.2/basicwebapi.RazorAssemblyInfo.cs
+/home/ecko/Desktop/dot_core/basicwebapi/obj/Debug/netcoreapp2.2/basicwebapi.AssemblyInfoInputs.cache
+/home/ecko/Desktop/dot_core/basicwebapi/obj/Debug/netcoreapp2.2/basicwebapi.AssemblyInfo.cs
+/home/ecko/Desktop/dot_core/basicwebapi/obj/Debug/netcoreapp2.2/basicwebapi.RazorTargetAssemblyInfo.cache
+/home/ecko/Desktop/dot_core/basicwebapi/obj/Debug/netcoreapp2.2/basicwebapi.dll
+/home/ecko/Desktop/dot_core/basicwebapi/obj/Debug/netcoreapp2.2/basicwebapi.pdb
