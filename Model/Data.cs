@@ -4,7 +4,7 @@ namespace basicwebapi.Model
 {
     public class Data : DbContext
     {
-        public Data(DbContextOptions<Data>options)
+        public Data(DbContextOptions<Data> options)
         : base(options)
         {
 

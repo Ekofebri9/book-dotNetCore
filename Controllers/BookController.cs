@@ -6,6 +6,9 @@ using basicwebapi.Model.Param;
 using basicwebapi.Model.View;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
+using basicwebapi.Model;
+using basicwebapi.Model.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace basicwebapi.Controllers
 {
@@ -13,32 +16,51 @@ namespace basicwebapi.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly object dbContext;
+        private readonly Data dbContext;
 
-        public BookController(Data dbCcontext)
+        public BookController(Data dbContext)
         {
             this.dbContext = dbContext;
             if (this.dbContext.Books.Count() == 0)
             {
-                this.dbContext.Books.Add(new Book
+                for (int i = 1; i < 5; i++)
                 {
-                    Id = 1,
-                    Date = DateTime.Now,
-                    Title = "harry Potter"
-                });
-                this.dbContext.SaveChanges();
+                    this.dbContext.Books.Add(new Book
+                    {
+                        Id = i,
+                        Date = DateTime.UtcNow,
+                        Title = "Harry Potter eps:" + i
+                    });
+                    this.dbContext.SaveChanges();
+                }
             }
         }
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<BookView>>> Get([FromQuery]GetBookParam param)
+        public BookView[] BookList { get; set; }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<BookView>>> Get([FromRoute]int id, [FromQuery]GetBookParam param)
         {
             var datasource = await dbContext.Books
             .Select(book => new BookView
             {
-                Id = book.Id,
+                //Id = book.Id, optional
                 Title = book.Title,
                 Date = book.Date
             }).ToListAsync();
+            if (id != null)
+            {
+            var data = datasource
+            .Where(item => item.Id == id )
+            .ToList();
+                if (data == null)
+                {
+                    return StatusCode(StatusCodes.Status404NotFound);
+                }
+                else
+                {
+                    return data;
+                }
+
+            }
             if (string.IsNullOrWhiteSpace(param.Title))
             {
                 return datasource;
@@ -51,10 +73,11 @@ namespace basicwebapi.Controllers
             // .Where(item => item.Title.Contains(param.Title, StringComparison.OrdinalIgnoreCase))
             // .ToList();
         }
+
         [HttpPost]
         public async Task<ActionResult<IEnumerable<BookView>>> Post([FromBody]BookView param)
         {
-            var newId = await dbContext.Book.CountAsync() + 1;
+            var newId = await dbContext.Books.CountAsync() + 1;
             dbContext.Add(new Book
             {
                 Title = param.Title,
@@ -67,7 +90,7 @@ namespace basicwebapi.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<IEnumerable<BookView>>> Put([FromRoute]int id, [FromBody]BookView param)
         {
-            var selectBook = await dbContext.Books.SingleOrDefault(item => item.Id == id);
+            var selectBook = await dbContext.Books.SingleOrDefaultAsync(item => item.Id == id);
             if (selectBook == null)
             {
                 return StatusCode(StatusCodes.Status404NotFound);
@@ -77,12 +100,5 @@ namespace basicwebapi.Controllers
             await dbContext.SaveChangesAsync();
             return StatusCode(StatusCodes.Status200OK);
         }
-    }
-
-    internal class Book
-    {
-        public int Id { get; set; }
-        public DateTime Date { get; set; }
-        public string Title { get; set; }
     }
 }
