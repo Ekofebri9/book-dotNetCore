@@ -37,7 +37,25 @@ namespace basicwebapi.Controllers
         }
         public BookView[] BookList { get; set; }
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<BookView>>> Get([FromRoute]int id, [FromQuery]GetBookParam param)
+        public async Task<ActionResult<BookView>> Get([FromRoute]int id)
+        {
+            var selectBook = await dbContext.Books
+            .Where(book => book.Id == id)
+            .Select(book => new BookView
+            {
+                Title = book.Title,
+                Date = book.Date
+            }).SingleOrDefaultAsync();
+            if (selectBook == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            } return selectBook;
+
+
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<BookView>>> Get([FromQuery]GetBookParam param)
         {
             var datasource = await dbContext.Books
             .Select(book => new BookView
@@ -46,21 +64,7 @@ namespace basicwebapi.Controllers
                 Title = book.Title,
                 Date = book.Date
             }).ToListAsync();
-            if (id != null)
-            {
-            var data = datasource
-            .Where(item => item.Id == id )
-            .ToList();
-                if (data == null)
-                {
-                    return StatusCode(StatusCodes.Status404NotFound);
-                }
-                else
-                {
-                    return data;
-                }
 
-            }
             if (string.IsNullOrWhiteSpace(param.Title))
             {
                 return datasource;
